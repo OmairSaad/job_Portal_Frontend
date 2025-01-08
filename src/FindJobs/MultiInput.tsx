@@ -1,24 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import { Checkbox, Combobox, Group, Input, Pill, PillsInput, useCombobox } from '@mantine/core';
+import { Checkbox, Combobox, Group, Input, Pill, PillsInput, ScrollArea, useCombobox } from '@mantine/core';
 import { IconProps, IconSelector } from '@tabler/icons-react';
 interface itemInterface {
-    item:{
-        title:string,
-        options:string[],
-        icon:React.ComponentType<IconProps>
+    item: {
+        title: string,
+        options: string[],
+        icon: React.ComponentType<IconProps>
     }
 }
 
 
-const MultiInput = ({item}:itemInterface) => {
-    useEffect(()=>{
-       setData(item.options)
-    },[item])
+const MultiInput = ({ item }: itemInterface) => {
+    useEffect(() => {
+        setData(item.options)
+    }, [item])
     const combobox = useCombobox({
         onDropdownClose: () => combobox.resetSelectedOption(),
         onDropdownOpen: () => combobox.updateSelectedOptionIndex('active'),
     });
-    
+
     const [search, setSearch] = useState('');
     const [data, setData] = useState<string[]>([]);
     const [value, setValue] = useState<string[]>([]);
@@ -43,14 +43,14 @@ const MultiInput = ({item}:itemInterface) => {
 
 
     const values = value
-    .slice(0,1)
-    .map((item) => (
-      <Pill key={item} withRemoveButton onRemove={() => handleValueRemove(item)}>
-        {item}
-      </Pill>
-    ));
+        .slice(0, 1)
+        .map((item) => (
+            <Pill key={item} withRemoveButton onRemove={() => handleValueRemove(item)}>
+                {item}
+            </Pill>
+        ));
 
-    const options = data.filter((item)=>item.toLowerCase().includes(search.trim().toLowerCase())).map((item) => (
+    const options = data.filter((item) => item.toLowerCase().includes(search.trim().toLowerCase())).map((item) => (
         <Combobox.Option value={item} key={item} active={value.includes(item)}>
             <Group gap="sm">
                 <Checkbox
@@ -93,19 +93,16 @@ const MultiInput = ({item}:itemInterface) => {
                     value={search}
                     onChange={(event) => setSearch(event.currentTarget.value)}
                     placeholder="Search groceries"
-                    
+
                 />
 
                 <Combobox.Options>
-                    {options}
-
-                    {!exactOptionMatch && search.trim().length > 0 && (
-                        <Combobox.Option value="$create">+ Create {search}</Combobox.Option>
-                    )}
-
-                    {exactOptionMatch && search.trim().length > 0 && options.length === 0 && (
-                        <Combobox.Empty>Nothing found</Combobox.Empty>
-                    )}
+                    <ScrollArea.Autosize mah={200} type="scroll">
+                        {options}
+                        {!exactOptionMatch && search.trim().length > 0 && (
+                            <Combobox.Option value="$create">+ Create {search}</Combobox.Option>
+                        )}
+                    </ScrollArea.Autosize>
                 </Combobox.Options>
             </Combobox.Dropdown>
         </Combobox>
