@@ -27,7 +27,6 @@ const Working = () => {
                 <div className="right flex flex-col gap-10">
                     {
                         work.map((item,index) => (
-
                             <div key={index} className="flex items-center px-20 gap-2">
                                 <div className="bg-bright-sun-200 p-2 rounded-full w-12">
                                     <img src={`src/assets/${item.src}`} alt={item.name} />

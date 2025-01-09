@@ -30,8 +30,8 @@ const Footer = () => {
                         <div key={index}>
                             <div className="text-lg text-bright-sun-400 font-semibold mb-2">{item.name}</div>
                             {
-                                item.links.map((link) => (
-                                    <div className="text-mine-shaft-300 hover:text-bright-sun-400 hover:cursor-pointer hover:translate-x-1 transition duration-300 ease-in-out">{link}</div>
+                                item.links.map((link,index) => (
+                                    <div key={index} className="text-mine-shaft-300 hover:text-bright-sun-400 hover:cursor-pointer hover:translate-x-1 transition duration-300 ease-in-out">{link}</div>
                                 ))
                             }
                         </div>

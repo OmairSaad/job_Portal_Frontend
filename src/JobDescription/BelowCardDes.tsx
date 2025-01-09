@@ -1,8 +1,9 @@
-import { IconMapPin } from "@tabler/icons-react";
+import {IconProps } from "@tabler/icons-react";
+import React from "react";
 interface JobDesInt{
     job:{
         name:string,
-        icon:string,
+        icon: React.ComponentType<IconProps> ,
         value:string
     }
 }
@@ -10,13 +11,13 @@ const BelowCardDes = ({job}:JobDesInt)=>{
     return (
         <div className="flex flex-col items-center">
             <div className="p-1 bg-bright-sun-400/15 rounded-full">
-                <IconMapPin className="text-bright-sun-400" />
+                <job.icon className="text-bright-sun-400" />
             </div>
             <div className="text-sm ">
                 {job.name}
             </div>
             <div className="font-semibold text-mine-shaft-100">
-                
+                {job.value}
             </div>
         </div>
     )

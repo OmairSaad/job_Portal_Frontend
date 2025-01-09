@@ -10,7 +10,7 @@ const Header = () => {
                     <IconGhost2 stroke={1.5} className="w-10 h-10" />
                 </div>
             </div>
-            <NavLinks />
+            <NavLinks/>
             <div className="flex gap-4 items-center justify-center">
                 <div className="bg-mine-shaft-800 p-2 rounded-full hover:cursor-pointer hover:bg-mine-shaft-900 transition duration-300 ease-in-out">
                     <IconSettingsCog />

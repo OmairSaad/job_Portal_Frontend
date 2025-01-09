@@ -10,8 +10,8 @@ const Testmonials = () => {
 
             <Carousel slideSize="22%" slideGap="md" align="center" loop dragFree nextControlIcon={<IconPlayerTrackNext className="w-4 h-4" />} previousControlIcon={<IconPlayerTrackPrev className="w-4 h-4" />} className="[&_button]:!bg-bright-sun-400 [&_button]:!outline-none [&_button]:!border-none [&_button]:!opacity-0 [&_button]:hover:!opacity-75 hover:[&_button]:!opacity-100">
                 {
-                    testimonialsData.map((data) => (
-                        <Carousel.Slide >
+                    testimonialsData.map((data,index) => (
+                        <Carousel.Slide key={index} >
                             <div className="card flex flex-col w-full p-2 border-bright-sun-400 border rounded-lg gap-2 backdrop-blur-md cursor-pointer select-none">
                                 <div className="flex items-center gap-2">
                                     <div>

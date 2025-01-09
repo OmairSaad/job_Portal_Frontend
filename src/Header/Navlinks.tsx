@@ -19,10 +19,10 @@ const NavLinks = () => {
     return (
         <div className="flex gap-5 items-center h-full text-mine-shaft-300">
                 {
-                    nv.map((e,index)=>(
-                        <div className={`border-t-[3px] h-full flex items-center ${location.pathname==e.url ? "border-bright-sun-300 text-bright-sun-300":"border-transparent"}`}>
+                    nv.map((e)=>(
+                        <div key={e.url} className={`border-t-[3px] h-full flex items-center ${location.pathname==e.url ? "border-bright-sun-300 text-bright-sun-300":"border-transparent"}`}>
                             {/* <NavLink to={e.url} className={(props)=> props.isActive?"text-bright-sun-400":"text-blue-500"}>{e.name}</NavLink> */}
-                            <Link key={index} to={e.url}>{e.name}</Link>
+                            <Link  to={e.url}>{e.name}</Link>
                         </div>
                     ))
                 }

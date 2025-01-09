@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import JobData from "../Data/JobData";
 import JobCard from "./JobCard";
 import Sort from "./Sort";
@@ -13,9 +12,7 @@ const Jobs = () => {
                 {
                     JobData.map((job)=>{
                         return (
-                            <Link to="/jobs">
                             <JobCard jobdetails = {job}/>
-                            </Link>
                         )
                     })
                 }

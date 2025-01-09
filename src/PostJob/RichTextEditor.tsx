@@ -37,6 +37,7 @@ const RichText = () => {
           <RichTextEditor.Code />
         </RichTextEditor.ControlsGroup>
 
+
         <RichTextEditor.ControlsGroup>
           {/* <RichTextEditor.H1 />
           <RichTextEditor.H2 />
