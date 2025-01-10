@@ -1,8 +1,15 @@
 import { Divider } from "@mantine/core";
 import SearchBar from "../FindTalent/SearchBar";
 import Talents from "../FindTalent/Talents";
+import { useEffect } from "react";
 
 const FindTalent =()=>{
+      useEffect(()=>{
+            window.scroll({
+                top:0,
+                behavior:"smooth"
+            })
+        })
     return (
         <div className="min-h-[100vh] bg-mine-shaft-950 font-['Exo 2']">
              <SearchBar />

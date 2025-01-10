@@ -13,4 +13,7 @@
     li{
         margin-left: 1em;
     }
+    body{
+        scroll-behavior: smooth;
+    }
 }
