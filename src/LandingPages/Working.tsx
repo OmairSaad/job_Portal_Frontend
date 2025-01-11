@@ -10,10 +10,10 @@ const Working = () => {
             <div className="flex items-center justify-between relative">
                 <div className="left">
                     <div className="w-[30rem]">
-                        <img src="src/assets/girl2.png" alt="girl" />
+                        <img src="/assets/girl2.png" alt="girl" />
                         <div className="flex flex-col gap-1 items-center w-[14%] p-2 border-bright-sun-300 border rounded-lg  backdrop-blur-md absolute top-[30%] left-[26%]">
                             <div className="">
-                                <Avatar src="src/assets/avatar.png" className="!h-16 !w-16"/>
+                                <Avatar src="/assets/avatar.png" className="!h-16 !w-16"/>
                             </div>
                             <div className="text-mine-shaft-100 font-semibold text-center">
                                 Complete your profile
@@ -29,7 +29,7 @@ const Working = () => {
                         work.map((item,index) => (
                             <div key={index} className="flex items-center px-20 gap-2">
                                 <div className="bg-bright-sun-200 p-2 rounded-full w-12">
-                                    <img src={`src/assets/${item.src}`} alt={item.name} />
+                                    <img src={`/assets/${item.src}`} alt={item.name} />
                                 </div>
                                 <div>
                                     <div className="text-xl text-mine-shaft-100 font-semibold">

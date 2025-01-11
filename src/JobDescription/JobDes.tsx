@@ -15,7 +15,7 @@ const JobDes = ({edit}:JobDesIn) => {
             <div className="flex justify-between items-center">
                 <div className="flex gap-2 justify-center text-mine-shaft-100">
                     <div className="rounded-lg bg-mine-shaft-50">
-                        <img src={`src/assets/companies/amzn.png`} alt="" className="h-14" />
+                        <img src={`/assets/companies/amzn.png`} alt="" className="h-14" />
                     </div>
                     <div className="flex flex-col gap-1 items-center justify-center">
                         <div className="text-2xl font-bold">Software Engineer</div>
@@ -66,7 +66,7 @@ const JobDes = ({edit}:JobDesIn) => {
                 <div className="flex mt-1 justify-between">
                     <div className="flex gap-2 justify-center text-mine-shaft-100">
                         <div className="rounded-lg bg-mine-shaft-50">
-                            <img src={`src/assets/companies/amzn.png`} alt="logo" />
+                            <img src={`/assets/companies/amzn.png`} alt="logo" />
                         </div>
                         <div className="flex flex-col gap-1 -center">
                             <div className="text-xl font-semibold text-mine-shaft-200">Google</div>

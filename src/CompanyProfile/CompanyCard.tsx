@@ -11,7 +11,7 @@ const CompanyCard = ({company}:comIn) => {
     return <div className="flex justify-between items-center bg-mine-shaft-900 p-2 rounded-lg">
         <div className="flex gap-2 items-center">
             <div className="bg-mine-shaft-100 p-1 rounded-xl">
-                <img src={`/src/assets/companies/${company.src}.png`} className="h-10"  alt="logo" />
+                <img src={`/assets/companies/${company.src}.png`} className="h-10"  alt="logo" />
             </div>
             <div>
                 <div className="text-mine-shaft-100 font-semibold">{company.name}</div>

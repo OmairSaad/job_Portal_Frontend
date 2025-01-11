@@ -17,7 +17,7 @@ const Header = () => {
                 </div>
                 <div className="flex items-center justify-center gap-3">
                     <h3>Omair</h3>
-                    <Avatar src="src\assets\avatar1.png" alt="it's me" className="hover:cursor-pointer" />
+                    <Avatar src="/assets/avatar1.png" alt="it's me" className="hover:cursor-pointer" />
                 </div>
                 <div className="bg-mine-shaft-800 p-2 rounded-full hover:cursor-pointer hover:bg-mine-shaft-900 transition duration-300 ease-in-out">
                     <Indicator color="red" offset={2} size={10} processing>

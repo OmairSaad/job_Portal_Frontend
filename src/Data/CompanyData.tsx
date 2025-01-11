@@ -22,7 +22,7 @@ const Similar = [
     {
         name:"Oracle",
         employees:17772,
-        src:"Oracle"
+        src:"oracle"
     },
     {
         name:"Adobe",

@@ -24,7 +24,7 @@ const TalentCard = ({ talentsDetails, posted }: TalentInterface) => {
             <div className="flex justify-between items-center">
                 <div className="flex gap-2 items-center">
                     <div className="p-1 bg-mine-shaft-700 rounded-full">
-                        <img src="src/assets/avatar1.png" alt="" className="h-10 rounded-full" />
+                        <img src="/assets/avatar1.png" alt="" className="h-10 rounded-full" />
                     </div>
                     <div>
                         <div className="font-bold text-mine-shaft-100">{talentsDetails.name}</div>

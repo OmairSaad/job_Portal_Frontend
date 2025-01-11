@@ -15,7 +15,7 @@ const Testmonials = () => {
                             <div className="card flex flex-col w-full p-2 border-bright-sun-400 border rounded-lg gap-2 backdrop-blur-md cursor-pointer select-none">
                                 <div className="flex items-center gap-2">
                                     <div>
-                                        <Avatar src="src/assets/avatar1.png" />
+                                        <Avatar src="/assets/avatar1.png" />
                                     </div>
                                     <div>
                                         <div className="text-mine-shaft-100 text-xl text-center font-bold">

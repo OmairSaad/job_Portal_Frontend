@@ -8,7 +8,7 @@ const JobCom = ()=>{
                 {
                     JobData.map((job,index)=>{
                         return (
-                            <JobCard key={index} jobdetails = {job}/>
+                           index<6 && <JobCard key={index} jobdetails = {job}/>
                         )
                     })
                 }

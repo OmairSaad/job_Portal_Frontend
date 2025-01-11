@@ -8,7 +8,7 @@ const Company = () => {
                     {
                         companies.map((com, index) => (
                             <div key={index} className="mx-8 px-2 py-1 mt-4 hover:bg-mine-shaft-100 rounded-lg cursor-pointer">
-                                <img  src={`src/assets/companies/${com}.png`} alt={com} className="h-14 bg-transparent" />
+                                <img  src={`/assets/companies/${com}.png`} alt={com} className="h-14 bg-transparent" />
                             </div>
 
                         ))

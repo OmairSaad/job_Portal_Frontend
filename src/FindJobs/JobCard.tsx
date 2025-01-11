@@ -22,7 +22,7 @@ const JobCard = ({jobdetails}:JobInterface) => {
             <div className="flex justify-between items-center">
                 <div className="flex gap-2 items-center">
                     <div className="p-1 rounded-lg bg-mine-shaft-50">
-                        <img src={`src/assets/companies/${jobdetails.icon}.png`} alt="" className="h-7" />
+                        <img src={`/assets/companies/${jobdetails.icon}.png`} alt="" className="h-7" />
                     </div>
                     <div>
                         <div className="font-semibold">{jobdetails.jobTitle}</div>

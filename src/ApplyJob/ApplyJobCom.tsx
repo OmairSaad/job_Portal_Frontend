@@ -39,7 +39,7 @@ const ApplyJobCom = () => {
 
             <div className="flex gap-2 text-mine-shaft-100">
                 <div className="rounded-lg bg-mine-shaft-50">
-                    <img src={`src/assets/companies/amzn.png`} alt="" className="h-14" />
+                    <img src={`/assets/companies/amzn.png`} alt="" className="h-14" />
                 </div>
                 <div className="flex flex-col gap-1 items-center justify-center">
                     <div className="text-2xl font-bold">Software Engineer</div>

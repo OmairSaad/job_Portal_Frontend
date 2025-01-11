@@ -3,7 +3,7 @@ import CompanyCard from "./CompanyCard";
 
 const SimilarCom = ()=>{
     return (
-        <div className="mx-2 w-1/4">
+        <div className="mx w-1/4">
             <div className="text-xl font-bold text-mine-shaft-100 mb-4">Similar Companies</div>
             <div className="flex flex-col gap-5">
             {
