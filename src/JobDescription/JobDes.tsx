@@ -4,7 +4,10 @@ import { Link } from "react-router-dom";
 import BelowCardDes from "./BelowCardDes";
 import { Des, JobDesData, Skills } from "../Data/JobDes";
 import DOMpurify from "dompurify"
-const JobDes = () => {
+interface JobDesIn{
+    edit:boolean
+}
+const JobDes = ({edit}:JobDesIn) => {
     // Load the des from var but filter it if it consists dangerous script by npm i dompurify
     const data = DOMpurify.sanitize(Des);
     return (
@@ -20,10 +23,12 @@ const JobDes = () => {
                     </div>
                 </div>
                 <div className="flex flex-col items-center gap-2">
-                    <Link to="/apply-job">
-                        <Button size="sm" variant="light" color="bright-sun.4">Apply</Button>
+                    <Link to={edit?"/edit-post":"/apply-job"}>
+                        <Button size="sm" variant="light" color="bright-sun.4">{edit?"Edit":"Apply"}</Button>
                     </Link>
-                    <IconBookmark className="text-bright-sun-300 hover:cursor-pointer" />
+                    {
+                        edit ? <Button variant="outline" color="red.4">Delete</Button>:<IconBookmark className="text-bright-sun-300 hover:cursor-pointer" />
+                    }
                 </div>
             </div>
             <Divider my="sm" />

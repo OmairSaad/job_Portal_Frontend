@@ -40,5 +40,19 @@ const Similar = [
         src:"walmart"
     },
 ]
+
+const activeJobs = [
+    { role: "Software Developer", location: "London, UK", days: 5 },
+    { role: "Data Scientist", location: "San Francisco, USA", days: 5 },
+    { role: "Product Manager", location: "Berlin, Germany", days: 5 },
+    { role: "UX Designer", location: "Sydney, Australia", days: 5 },
+    { role: "DevOps Engineer", location: "Toronto, Canada", days: 5 },
+    { role: "Backend Developer", location: "Mumbai, India", days: 5 },
+    { role: "Frontend Developer", location: "Dublin, Ireland", days: 5 },
+    { role: "Mobile App Developer", location: "Tokyo, Japan", days: 5 },
+    { role: "Cloud Architect", location: "Singapore", days: 5 },
+    { role: "QA Engineer", location: "Amsterdam, Netherlands", days: 5 },
+  ];
+  
 // eslint-disable-next-line react-refresh/only-export-components
-export {companydata,Similar};
+export {companydata,Similar, activeJobs};
