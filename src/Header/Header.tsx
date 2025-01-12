@@ -1,9 +1,11 @@
 import { Avatar, Indicator } from "@mantine/core";
 import { IconBell, IconGhost2, IconSettingsCog } from "@tabler/icons-react";
 import NavLinks from "./Navlinks";
+import { useLocation } from "react-router-dom";
 const Header = () => {
+    const location = useLocation();
     return (
-        <div className="w-full bg-mine-shaft-950 h-20 flex justify-between items-center text-white px-6">
+        (location.pathname !="/signup" && location.pathname!="/login")  ?<div className="w-full bg-mine-shaft-950 h-20 flex justify-between items-center text-white px-6">
             <div>
                 <div className="flex gap-2 items-center text-bright-sun-400">
                     <h2 className="font-bold text-3xl">JobSpark</h2>
@@ -25,7 +27,7 @@ const Header = () => {
                     </Indicator>
                 </div>
             </div>
-        </div>
+        </div>:<></>
     )
 }
 

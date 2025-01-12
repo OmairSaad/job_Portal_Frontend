@@ -16,6 +16,7 @@ import ApplyJob from "./Pages/ApplyJobPage";
 import CompanyJob from "./Pages/CompanyPage";
 import PostedJobsPage from "./Pages/PostedJobsPage";
 import JobHistoryPage from "./Pages/JobHistoryPage";
+import SignUpLoginPage from "./Pages/SignUpLoginPage";
 function App() {
   const theme = createTheme({
     primaryColor: "bright-sun",
@@ -32,7 +33,7 @@ function App() {
     <MantineProvider defaultColorScheme="dark" theme={theme}>
       <BrowserRouter>
         <div className="relative">
-          <Header />
+           <Header />
           <Divider size="xs" />
           <Routes>
             <Route path="find-jobs" element={<FindJob />} />
@@ -44,6 +45,8 @@ function App() {
             <Route path="company" element={< CompanyJob />} />
             <Route path="posted-job" element={< PostedJobsPage />} />
             <Route path="job-history" element={< JobHistoryPage />} />
+            <Route path="signup" element={< SignUpLoginPage />} />
+            <Route path="login" element={< SignUpLoginPage />} />
             <Route path="*" element={<Home />} />
           </Routes>
           <Footer />

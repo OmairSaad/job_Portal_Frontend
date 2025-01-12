@@ -1,8 +1,10 @@
 import { IconBrandFacebook, IconBrandInstagram, IconBrandX, IconGhost2 } from "@tabler/icons-react";
 import { footerData } from "../Data/Data";
+import { useLocation } from "react-router-dom";
 const Footer = () => {
+    const location = useLocation();
     return (
-        <div className="bg-mine-shaft-950">
+       (location.pathname !="/signup" && location.pathname!="/login" )?<div className="bg-mine-shaft-950">
             <div className="flex justify-around gap-5">
                 <div className="w-1/4">
                     <div className="flex gap-2 items-center text-bright-sun-400 mb-2">
@@ -39,7 +41,7 @@ const Footer = () => {
                 }
             </div>
             <div className="text-mine-shaft-300 font-semibold text-center">All right reserved &copy; {new Date().getFullYear()}</div>
-        </div>
+        </div>:<></>
     )
 }
 export default Footer;

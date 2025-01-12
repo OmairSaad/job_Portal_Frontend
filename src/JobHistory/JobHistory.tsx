@@ -28,7 +28,7 @@ const JobHistory = () => {
                 </Tabs.Panel>
 
                 <Tabs.Panel value="saved">
-                    <div className="flex flex-wrap gap-5 mt-10">
+                    <div className="flex flex-wrap gap-5 mt-5">
                         {
                             JobData.map((job) => {
                                 return (
@@ -40,7 +40,7 @@ const JobHistory = () => {
                 </Tabs.Panel>
 
                 <Tabs.Panel value="offered">
-                    <div className="flex flex-wrap gap-5 mt-10">
+                    <div className="flex flex-wrap gap-5 mt-5">
                         {
                             JobData.map((job) => {
                                 return (
@@ -52,7 +52,7 @@ const JobHistory = () => {
                 </Tabs.Panel>
 
                 <Tabs.Panel value="interviewing">
-                    <div className="flex flex-wrap gap-5 mt-10">
+                    <div className="flex flex-wrap gap-5 mt-5">
                         {
                             JobData.map((job) => {
                                 return (
