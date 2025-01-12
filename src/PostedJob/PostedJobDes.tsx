@@ -20,9 +20,11 @@ const PostedJobDes = () => {
                         <JobDes edit={true} />
                     </TabsPanel>
                     <TabsPanel value="applicants">
-                        <ApplicantCards />
+                        <ApplicantCards invited={false} />
                     </TabsPanel>
-                    <TabsPanel value="invited">Invited</TabsPanel>
+                    <TabsPanel value="invited">
+                    <ApplicantCards invited={true} />
+                    </TabsPanel>
                 </Tabs>
             </div>
         </div>

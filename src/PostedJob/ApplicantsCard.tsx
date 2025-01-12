@@ -1,13 +1,15 @@
 import { TalentsData } from "../Data/TalentData"
 import TalentCard from "../FindTalent/TalentCard"
-
-const ApplicantCards = ()=>{
+interface Invited{
+    invited:boolean
+}
+const ApplicantCards = ({invited}:Invited)=>{
     return <div>
-        <div className="flex flex-wrap gap-5 mt-10">
+        <div className="flex flex-wrap gap-5 mt-2">
                 {
                     TalentsData.map((item, index) => {
                         return (
-                            <TalentCard key={index} talentsDetails={item} posted={true} />
+                            <TalentCard key={index} talentsDetails={item} posted={true} invited={invited}/>
                         )
                     })
                 }

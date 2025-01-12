@@ -8,7 +8,7 @@ const EmployeeCom = () => {
                 {
                     TalentsData.map((item, index) => {
                         return (
-                            <TalentCard key={index} talentsDetails={item} posted={false} />
+                            <TalentCard invited={false} key={index} talentsDetails={item} posted={false} />
                         )
                     })
                 }

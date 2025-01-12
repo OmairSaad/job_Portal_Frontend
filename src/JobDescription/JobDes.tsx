@@ -36,8 +36,8 @@ const JobDes = ({edit}:JobDesIn) => {
             <div>
                 <div className="flex justify-between items-center">
                     {
-                        JobDesData.map((job) => (
-                            <BelowCardDes job={job} />
+                        JobDesData.map((job,index) => (
+                            <BelowCardDes key={index} job={job} />
                         ))
                     }
                 </div>
