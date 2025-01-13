@@ -19,8 +19,8 @@ const Profile = ({profile}:profIn) => {
                 <div className="text-3xl font-semibold flex justify-between">
                     {profile.name} <Button variant="light" radius="md" color="bright-sun.3">Message</Button>
                 </div>
-                <div className="flex gap-1 items-center text-xl"> <IconBriefcase /> {profile.role} &bull; {profile.company}</div>
-                <div className="flex text-lg gap-1 items-center text-mine-shaft-300">
+                <div className="flex gap-1 items-center text-lg"> <IconBriefcase /> {profile.role} &bull; {profile.company}</div>
+                <div className="flex text-sm gap-1 items-center text-mine-shaft-300">
                     <IconMapPin className="h-5 w-5" stroke={1.5} /> {profile.loacation}
                 </div>
             </div>
