@@ -2,8 +2,8 @@ import { Button } from "@mantine/core";
 import { IconArrowLeftToArc } from "@tabler/icons-react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import Company from "../CompanyProfile/Company";
-import SimilarCom from "../CompanyProfile/SimilarCom";
+import Company from "../Components/CompanyProfile/Company";
+import SimilarCom from "../Components/CompanyProfile/SimilarCom";
 
 const CompanyJob = () => {
     useEffect(()=>{

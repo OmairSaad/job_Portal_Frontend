@@ -1,23 +1,13 @@
-import { createTheme, Divider, MantineProvider } from "@mantine/core"
+import { createTheme, MantineProvider } from "@mantine/core"
 import '@mantine/core/styles.css';
 import '@mantine/carousel/styles.css';
 import '@mantine/tiptap/styles.css';
 import '@mantine/dates/styles.css';
-import Home from "./Pages/HomePage";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Header from "./Header/Header";
-import Footer from "./Footer/Footer";
-import FindTalent from "./Pages/FindTalentPage";
-import TalentProfile from "./Pages/FindTalentProfilePage";
-import FindJob from "./Pages/FindJobPage";
-import PostJobPage from "./Pages/PostJobPage";
-import JobDesPage from "./Pages/JobDesPage";
-import ApplyJob from "./Pages/ApplyJobPage";
-import CompanyJob from "./Pages/CompanyPage";
-import PostedJobsPage from "./Pages/PostedJobsPage";
-import JobHistoryPage from "./Pages/JobHistoryPage";
-import SignUpLoginPage from "./Pages/SignUpLoginPage";
-import ProfilePage from "./Pages/ProfilePage";
+import '@mantine/notifications/styles.css';
+import { Notifications } from '@mantine/notifications';
+import { Provider } from "react-redux";
+import store from "./Store"
+import Approutes from "./Pages/Approutes";
 function App() {
   const theme = createTheme({
     primaryColor: "bright-sun",
@@ -31,30 +21,13 @@ function App() {
     fontFamily: "Exo 2, sans-serif"
   })
   return (
+    <Provider store={store}>
     <MantineProvider defaultColorScheme="dark" theme={theme}>
-      <BrowserRouter>
-        <div className="relative">
-           <Header />
-          <Divider size="xs" />
-          <Routes>
-            <Route path="find-jobs" element={<FindJob />} />
-            <Route path="find-talent" element={<FindTalent />} />
-            <Route path="talent-profile" element={<TalentProfile />} />
-            <Route path="post-job" element={<PostJobPage />} />
-            <Route path="jobs" element={< JobDesPage />} />
-            <Route path="apply-job" element={< ApplyJob />} />
-            <Route path="company" element={< CompanyJob />} />
-            <Route path="posted-job" element={< PostedJobsPage />} />
-            <Route path="job-history" element={< JobHistoryPage />} />
-            <Route path="signup" element={< SignUpLoginPage />} />
-            <Route path="login" element={< SignUpLoginPage />} />
-            <Route path="profile" element={< ProfilePage />} />
-            <Route path="*" element={<Home />} />
-          </Routes>
-          <Footer />
-        </div>
-      </BrowserRouter>
+      {/* All component in spereate file */}
+      <Notifications />
+      <Approutes />
     </MantineProvider>
+    </Provider>
   )
 }
 
