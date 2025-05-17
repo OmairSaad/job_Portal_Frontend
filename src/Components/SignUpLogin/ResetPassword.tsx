@@ -51,7 +51,7 @@ const ResetPassword = ({ opened, close }: resIn) => {
                 setResendLoader(true);
             }).catch((er) => {
                 console.log(er.response.data.errorMessage);
-                errorNotf(er.response.data.errorMessage, "Resend OTP")
+                errorNotf(er.response.data.errorMessage, "Resend an OTP")
                 setOtpSending(false);
             })
     }
@@ -68,7 +68,7 @@ const ResetPassword = ({ opened, close }: resIn) => {
                 setVerified(true);
                 console.log(res);
                 setOtpsent(false);
-                succesNotf(res.message, "Please enter new password..");
+                succesNotf(res.message, "Please enter new password");
             }).catch((er) => {
                 errorNotf(er.response.data.errorMessage, "Re-enter OTP")
             })
@@ -82,7 +82,7 @@ const ResetPassword = ({ opened, close }: resIn) => {
                     succesNotf(res.message, res.message);
                     setOtpSending(false);
                     setOtpsent(false);
-                    setVerified(false);
+                    setVerified(false);   
                     reset();
                     interval.stop();
                     setResendLoader(false);
