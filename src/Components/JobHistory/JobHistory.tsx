@@ -59,9 +59,12 @@ const JobHistory = () => {
                     <div className="flex flex-wrap gap-5 mt-5">
                         {
                             jobs.map((job) => {
-                                return (
-                                    <HistoryCard jobdetails={job} applied={false} saved={false} offered={true} interviewing={false} timestamp={job.applicantTimestamp} />
-                                )
+                                if (job.applicationStatus === "OFFERED") {
+                                    return (
+                                        <HistoryCard jobdetails={job} applied={false} saved={false} offered={true} interviewing={false} timestamp={job.applicantTimestamp}/>
+                                    )
+                                }
+                               
                             })
                         }
                     </div>                
@@ -71,9 +74,13 @@ const JobHistory = () => {
                     <div className="flex flex-wrap gap-5 mt-5">
                         {
                             jobs.map((job) => {
-                                return (
-                                    <HistoryCard jobdetails={job} applied={false} saved={false} offered={false} interviewing={true} timestamp={job.applicantTimestamp}/>
-                                )
+                                if (job.applicationStatus === "INTERVIEWING") {
+
+                                    return (
+                                        <HistoryCard jobdetails={job} applied={false} saved={false} offered={false} interviewing={true} timestamp={job.applicantTimestamp} applicant={job.applicants?.find(ap=> ap)}/>
+                                    )
+                                }
+                             
                             })
                         }
                     </div>

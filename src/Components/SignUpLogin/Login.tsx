@@ -38,6 +38,7 @@ const Login = () => {
             }, 1500);
         }).catch((er) => {
             setLoading(false);
+            console.log(er)
             let erMessage = er.response.data.errorMessage;
             if(Array.isArray(er.response.data)){
                 erMessage = er.response.data[0].errorMessage;

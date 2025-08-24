@@ -23,7 +23,7 @@ const updateAbout = (about: string, id: number) => {
             throw er;
         });
 }
-
+ 
 const updateSkills = (skills: string[], id: number) => {
     const setOfSkiils = skills.map((skill) => {
         return { skillName: skill };

@@ -1,10 +1,9 @@
 import { Button } from "@mantine/core";
 import { IconArrowLeftToArc } from "@tabler/icons-react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import JobDes from "../Components/JobDescription/JobDes";
 import RecommendedJob from "../Components/JobDescription/RecommendedJob";
 import { useEffect } from "react";
-import { Job } from "../Interfaces/PostJob";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../Store";
 import { getJobById } from "../Slices/JobSlice";

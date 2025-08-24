@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from "react-redux";
-import { TalentsData } from "../../Data/TalentData";
 import Sort from "../FindJobs/Sort";
 import TalentCard from "./TalentCard";
 import { RootState } from "../../Store";

@@ -14,7 +14,7 @@ const FindTalent = [
         icon:IconMapPin
     },
     {
-        title:"Skills",
+        title:"Skill",
         options:["AWS","DevOps","Azure","Google Cloud","Testing","Java","NodeJs","Angular","React","Python"],
         icon: IconRecharging
     }

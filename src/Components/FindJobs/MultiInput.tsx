@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Checkbox, Combobox, Group, Input, Pill, PillsInput, ScrollArea, useCombobox } from '@mantine/core';
 import { IconProps, IconSelector } from '@tabler/icons-react';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../../Store';
+import { updateFilter } from '../../Slices/FilterSlice';
 interface itemInterface {
     item: {
         title: string,
@@ -11,6 +14,7 @@ interface itemInterface {
 
 
 const MultiInput = ({ item }: itemInterface) => {
+    const dispatch = useDispatch<AppDispatch>();
     useEffect(() => {
         setData(item.options)
     }, [item])
@@ -29,17 +33,25 @@ const MultiInput = ({ item }: itemInterface) => {
         setSearch('');
 
         if (val === '$create') {
+            const newValue = [...value, search];
             setData((current) => [...current, search]);
             setValue((current) => [...current, search]);
+            dispatch(updateFilter({ [item.title.toLowerCase()=="job title"? "roles":item.title.toLowerCase()]: newValue })); // ✅ dispatch new array
         } else {
-            setValue((current) =>
-                current.includes(val) ? current.filter((v) => v !== val) : [...current, val]
-            );
+            const newValue = value.includes(val) ? value.filter((v) => v !== val) : [...value, val]
+            setValue(newValue);
+            setValue(newValue);   
+            dispatch(updateFilter({ [item.title.toLowerCase()=="job title"? "roles":item.title.toLowerCase()+'s']: newValue })); // ✅ dispatch new array
+    
         }
     };
 
-    const handleValueRemove = (val: string) =>
-        setValue((current) => current.filter((v) => v !== val));
+    const handleValueRemove = (val: string)=> {
+          const newValue = value.filter((v) => v !== val);
+     setValue(newValue);
+     dispatch(updateFilter({ [item.title.toLowerCase()]: newValue })); // ✅ dispatch on remove
+
+    }
 
 
     const values = value

@@ -1,5 +1,5 @@
 import { ActionIcon, Avatar, Divider, FileInput, Overlay, TagsInput, Textarea } from "@mantine/core";
-import { IconBriefcase, IconCircleX, IconDeviceFloppy, IconEdit, IconMapPin, IconPencil, IconPlus } from "@tabler/icons-react";
+import { IconBriefcase, IconCalendar,  IconCancel,  IconCircleX, IconDeviceFloppy, IconEdit, IconMapPin, IconPencil, IconPlus } from "@tabler/icons-react";
 import ExpCard from "./ExprienceCard";
 import CertiCard from "./CertiCard";
 import { useEffect, useState } from "react";
@@ -35,7 +35,7 @@ const Profile = () => {
             console.log(res.data);
             dispatch(saveProfile(res.data));
             // setProfile(res.data)
-            setInfo({ role: res.data.role, company: res.data.company, location: res.data.location })
+            setInfo({ role: res.data.role, company: res.data.company, location: res.data.location ,totalExprience: res.data.totalExprience.toString() })
             setAbout(res.data.about)
             const skills = res.data.skills.map((skill) => skill.skillName);
             setValue(skills);
@@ -51,7 +51,8 @@ const Profile = () => {
     const [info, setInfo] = useState({
         role: "",
         company: "",
-        location: ""
+        location: "",
+        totalExprience: "" 
     })
     const handlInfo = (field: string, val: string) => {
         setInfo((prev) => (
@@ -141,11 +142,18 @@ const Profile = () => {
             </div>
             <div className="mt-16 px-3">
                 <div className="text-3xl font-semibold flex justify-between">
-                    {Profile.name}  <ActionIcon variant="subtle" color="bright-sun.4" onClick={() => handleEdit(0)}>
+                    {Profile.name}  
+                    <div>
+                    <ActionIcon variant="subtle" color="bright-sun.4" onClick={() => handleEdit(0)}>
                         {
                             edit[0] ? <IconDeviceFloppy className="h-4/5 w-4/5" onClick={handlinfoCall} /> : <IconPencil className="h-4/5 w-4/5" />
                         }
                     </ActionIcon>
+                    {
+                        edit[0] && <ActionIcon variant="subtle" color="bright-sun.4"> <IconCancel onClick={()=> handleEdit(0)} color="red" className="h-4/5 w-4/5" /></ActionIcon>
+
+                    }
+                    </div>
                 </div>
 
                 {
@@ -154,12 +162,19 @@ const Profile = () => {
                             <SelectInput field={Fields[0]} setField={Profile.role} info={handlInfo} name="role" />
                             <SelectInput field={Fields[1]} setField={Profile.company} info={handlInfo} name="company" />
                         </div>
+                        <div  className="flex gap-10 [&>*]:w-1/2">
                         <SelectInput field={Fields[2]} setField={Profile.location} info={handlInfo} name="location" />
-                    </div> : <>
-                        <div className="flex gap-1 items-center text-lg"> <IconBriefcase /> {Profile.role} &bull; {Profile.company}</div>
-                        <div className="flex text-sm gap-1 items-center text-mine-shaft-300">
-                            <IconMapPin className="h-5 w-5" stroke={1.5} /> {Profile.location}
+                        <SelectInput field={Fields[3]} setField={Profile.totalExprience.toString()} info={handlInfo} name="totalExprience" />
                         </div>
+
+                    </div> : <>
+                        <div className="flex gap-1 items-center text-lg"> <IconBriefcase className="h-5 w-5" stroke={1.5} /> {Profile.role} &bull; {Profile.company}</div>
+                        <div className="flex text-sm gap-1 items-center text-mine-shaft-300">
+                            <IconMapPin className="h-5 w-5" stroke={1.5} /> {Profile.location} 
+                        </div> 
+                        <div className="flex text-sm gap-1 items-center text-mine-shaft-300 mt-1 font-bold">
+                          <IconCalendar className="h-5 w-5" stroke={1.5} />{Profile.totalExprience > 1 ? `${Profile.totalExprience} years` : `${Profile.totalExprience} year`}
+                        </div> 
                     </>
                 }
 
@@ -168,11 +183,17 @@ const Profile = () => {
             <Divider mx="xs" my="xl" />
             <div className="px-3">
                 <div className="text-2xl font-semibold mb-3 flex justify-between">About
+                    <div>
                     <ActionIcon variant="subtle" color="bright-sun.4" onClick={() => handleEdit(1)}>
                         {
                             edit[1] ? <IconDeviceFloppy className="h-4/5 w-4/5" onClick={handleAboutCall} /> : <IconPencil className="h-4/5 w-4/5" />
                         }
                     </ActionIcon>
+                    {
+                        edit[1] && <ActionIcon variant="subtle" color="bright-sun.4"> <IconCancel onClick={()=> handleEdit(1)} color="red" className="h-4/5 w-4/5" /></ActionIcon>
+
+                    }
+                    </div>
                 </div>
                 {
                     edit[1] ? <Textarea minRows={3} placeholder="Write about Yourself" withAsterisk autosize value={about} onChange={(event) => (setAbout(event.currentTarget.value))} /> : <div className="text-sm text-mine-shaft-300 text-justify">
@@ -186,11 +207,17 @@ const Profile = () => {
 
             <div className="px-3">
                 <div className="text-2xl font-semibold mb-3 flex justify-between">Skills
+                    <div>
                     <ActionIcon variant="subtle" color="bright-sun.4" onClick={() => handleEdit(2)}>
                         {
                             edit[2] ? <IconDeviceFloppy className="h-4/5 w-4/5" onClick={handlSkillCall} /> : <IconPencil className="h-4/5 w-4/5" />
                         }
                     </ActionIcon>
+                    {
+                        edit[2] && <ActionIcon variant="subtle" color="bright-sun.4"> <IconCancel onClick={()=> handleEdit(2)} color="red" className="h-4/5 w-4/5" /></ActionIcon>
+
+                    }
+                    </div>
                 </div>
                 {
                     edit[2] ? <TagsInput

@@ -33,6 +33,7 @@ export interface UserProfile {
   expriences: Experience[];
   certifications: Certification[];
   picture: string,
+  totalExprience: number
 }
 
 export interface info {

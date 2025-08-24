@@ -4,11 +4,10 @@ import { Fields } from "../../Data/PostJobData";
 import SelectInput from "./SelectInput";
 import RichText from "./RichTextEditor";
 import { PostJobIn } from "../../Interfaces/PostJob";
-// import { addJob } from "../../Services/JobService";
 import { useDispatch, useSelector } from "react-redux";
 import { rootState } from "../Header/ProfileMenue";
-import { errorNotf, succesNotf } from "../../Services/Notification";
-import { addJob, clearSuccessMessage, getJobById } from "../../Slices/JobSlice";
+import {  succesNotf } from "../../Services/Notification";
+import { addJob, clearSuccessMessage } from "../../Slices/JobSlice";
 import { useEffect } from "react";
 import { RootState } from "../../Store";
 import { useParams } from "react-router-dom";
@@ -16,27 +15,23 @@ import { useParams } from "react-router-dom";
 const PostJob = () => {
     const param = useParams();
     const fields = Fields;
-    const {id} = useSelector((state: rootState) => state.user);
-    const { successMessage,job } = useSelector((state: RootState) => state.jobs);
+    const { id } = useSelector((state: rootState) => state.user);
+    const { successMessage, job } = useSelector((state: RootState) => state.jobs);
     const dispatch = useDispatch();
-    useEffect(() => {
-        if (successMessage?.message=="DRAFT") {
-            succesNotf("Success","Job Drafted Successfully");
-           
-        }else if(successMessage?.message=="ACTIVE"){
-            succesNotf("Success","Your Job  has been posted successfully! 🎉");
-        }
-        reset()
-        dispatch(clearSuccessMessage())
-    },[successMessage,dispatch])
-    // Initialize react-hook-form
 
-     useEffect(()=>{
-        dispatch(getJobById({jobId:param.id,userId:id}));
-        console.log(job);
-     },[param.id, dispatch])
-
-    
+    const defaultValues: PostJobIn = {
+        company: "",
+        experience: "",
+        jobDescription: "",
+        jobTitle: "",
+        jobType: "",
+        location: "",
+        salary: null,
+        skills: [],
+        about: "",
+        jobStatus: "ACTIVE",
+        postedAgo: new Date().toISOString(),
+    };
     const {
         control,
         handleSubmit,
@@ -44,20 +39,23 @@ const PostJob = () => {
         reset,
         watch
     } = useForm<PostJobIn>({
-        defaultValues: {
-            company: "",
-            experience: "",
-            jobDescription: "",
-            jobTitle: "",
-            jobType: "",
-            location: "",
-            salary: null,
-            skills: [],
-            about: ""
-        }
-    });
+        defaultValues: defaultValues
+    }
+    );
+
     useEffect(() => {
-        if (job) {
+        if (successMessage?.message == "DRAFT") {
+            succesNotf("Success", "Job Drafted Successfully");
+        } else if (successMessage?.message == "UPDATE") {
+            succesNotf("Success", "Your Job has been UPDATED successfully! 🎉");
+        } else if (successMessage?.message == "ADD") {
+            succesNotf("Success", "Your Job has been ADDED successfully! 🎉");
+        }
+        dispatch(clearSuccessMessage());
+    }, [successMessage, dispatch, reset, param.id]);  
+
+    useEffect(() => {
+        if (job && param.id && param.id!== "0") {
             reset({
                 company: job.company,
                 experience: job.experience,
@@ -66,28 +64,32 @@ const PostJob = () => {
                 jobType: job.jobType,
                 location: job.location,
                 salary: job.salary,
-                skills: job.skills?.map(sk=> sk.skillName),
+                skills: job.skills?.map(sk => sk.skillName),
                 about: job.about,
-                
+
             });
         }
-    }, [job, reset]);
+        if(param.id==undefined){
+            reset(defaultValues);
+        }
+    }, [job, reset, param.id]);
     // Handle form submission
     const onSubmit = async (data: PostJobIn) => {
-        data.jobStatus="ACTIVE";
-        data = {...data,id:Number(param.id)};
+        data.jobStatus = "ACTIVE";
+        data = { ...data, id: Number(param.id) };
         console.log(data);
-        dispatch(addJob({data,id}));
+        dispatch(addJob({ data, id }));
+        reset(defaultValues);
     };
-    
-    const handleSaveDraft = ()=>{
-        const data:PostJobIn = {...watch(),jobStatus:"DRAFT"};
-        dispatch(addJob({data,id}));
+
+    const handleSaveDraft = () => {
+        const data: PostJobIn = { ...watch(), jobStatus: "DRAFT" };
+        dispatch(addJob({ data, id }));
         console.log(data);
     }
     return (
         <div className="w-4/5 mx-auto mb-10">
-            <div className="text-2xl font-semibold text-mine-shaft-100"> {param.id ? "Edit":"Post"} a Job</div>
+            <div className="text-2xl font-semibold text-mine-shaft-100"> {param.id ? "Edit" : "Post"} a Job</div>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="flex flex-wrap justify-center">
                     {fields.map((f) => (
@@ -188,9 +190,9 @@ const PostJob = () => {
 
                 <div className="flex gap-4 mt-4 px-5">
                     <Button variant="light" type="submit" color="bright-sun.4">
-                      {param.id ? "Update" : "Publish" }   Job
+                        {param.id ? "Update" : "Publish"}   Job
                     </Button>
-                    <Button onClick={handleSaveDraft} variant="outline" color="bright-sun.4">
+                    <Button onClick={handleSaveDraft} disabled={job.jobStatus=="DRAFT"} variant="outline" color="bright-sun.4">
                         Save as Draft
                     </Button>
                 </div>

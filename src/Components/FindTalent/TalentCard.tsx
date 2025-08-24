@@ -13,7 +13,7 @@ interface TalentInterface {
     posted: boolean,
     invited: boolean
 }
-const TalentCard = ({ talentsDetails, posted, invited }: TalentInterface) => {
+const TalentCard = ({ talentsDetails, posted}: TalentInterface) => {
     const [opened, { open, close }] = useDisclosure(false);
     const [appOpened, app] = useDisclosure(false);
 
@@ -76,8 +76,8 @@ const TalentCard = ({ talentsDetails, posted, invited }: TalentInterface) => {
                     <IconCalendarMonth stroke={1.5} />  Interview: {formatToDayMonth(talentsDetails.interviewDate)} , 2025 &bull;{formatToTime(talentsDetails.interviewTime)}
                 </div> :
                     <div className="flex justify-between">
-                        <div className="font-semibold text-mine-shaft-100">
-                            <span>&#8377; 42 LPA </span>
+                        <div className="font-semibold text-mine-shaft-300">
+                            <span> Exp: {talentsDetails.profile.totalExprience  || 1} {talentsDetails.profile.totalExprience>1 ? "years"  : "year"}</span>
                         </div>
                         <div className="flex gap-1 text-sm items-center">
                             <IconMapPin stroke={1.5} className="h-5 w-5" />{talentsDetails.profile.location}

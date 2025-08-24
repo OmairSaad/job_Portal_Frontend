@@ -18,7 +18,14 @@ const Fields = [
         placeholder:"Enter Job Location",
         options:["Delhi","New York","Hyderabad","Berlin","Tokyo","Sydney","Bangaluru","Lucknow , India"],
         icon:IconMapPin
-    }
+    },
+    {
+        label:"Total Exprience",
+        placeholder:"Enter Exprience",
+        options:["1","2","3","4"],
+        icon:IconMapPin
+    },
+    
 ]
 
 const CertificateFileds = [

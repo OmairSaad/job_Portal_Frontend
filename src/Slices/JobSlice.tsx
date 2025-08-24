@@ -8,7 +8,7 @@ import { UserProfile } from "../Interfaces/UserProfile";
 // Define thunks for each API call
 export const addJob = createAsyncThunk(
     "jobs/addJob",
-    async ({ data, id }: { data: Job, id: number }, { rejectWithValue }) => {
+    async ({ data, id  }: { data: Job, id: number }, { rejectWithValue }) => {
         console.log(data, id);
         try {
             const transformedData = {
@@ -133,7 +133,6 @@ export const getAllProfiles = createAsyncThunk(
         try{
            const response = await axios.get(`${base_url}profiles`); 
            return response.data;
-
         }catch(error){
             const axiosError = error as AxiosError<{ message: string }>;
             return rejectWithValue(axiosError.response?.data);
@@ -179,7 +178,7 @@ export interface ApplicantWithProfile {
     resume: string;
     profile: UserProfile,
     interviewDate:string,
-    interviewTime:string
+    interviewTime:string,
 }
 interface JobSliceIn {
     jobs: Job[],
@@ -212,6 +211,7 @@ const initialState: JobSliceIn = {
         expriences: [],
         certifications: [],
         picture: "",
+        totalExprience:0
     }
 };
 
@@ -233,9 +233,10 @@ const jobSlice = createSlice({
                 state.successMessage = null;
             })
             .addCase(addJob.fulfilled, (state, action) => {
+                console.log("Job added successfully:", action.payload);
                 state.loading = false;
-                state.jobs.push(action.payload);
-                state.successMessage = { message: action.payload.jobStatus, id:1 };
+                state.jobs.push(action.payload.data);
+                state.successMessage = { message: action.payload.message, id:1 };
             })
             .addCase(addJob.rejected, (state, action) => {
                 state.loading = false;
@@ -403,10 +404,12 @@ const jobSlice = createSlice({
             .addCase(deleteJob.pending, (state) => {
                 state.loading = true;
                 state.error = null;
+                state.successMessage= null
             })
             .addCase(deleteJob.fulfilled, (state, action) => {
                 state.loading = false;
                 state.jobs = state.jobs.filter(job => job.id !== action.meta.arg);
+                state.successMessage= {message:"Deleted Successfully",id:0}
             })
             .addCase(deleteJob.rejected, (state, action) => {
                 state.loading = false;

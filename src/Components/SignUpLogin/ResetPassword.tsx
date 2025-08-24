@@ -64,7 +64,7 @@ const ResetPassword = ({ opened, close }: resIn) => {
 
     const handleVerifyOtp = async (otp: string) => {
         verifyOtp(email, otp)
-            .then((res) => {
+            .then((res) => { 
                 setVerified(true);
                 console.log(res);
                 setOtpsent(false);

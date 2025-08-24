@@ -9,11 +9,12 @@ interface profIn{
     profile:UserProfile
 }
 const Profile = ({profile}:profIn) => {
+    // src={Profile.picture ? `data:image/jpeg;base64,${Profile.picture}`
     return (
         <div className="w-2/3">
             <div className="relative">
                 <img src="/assets/banner.webp" alt="banner" className="w-full h-44 rounded-t-2xl" />
-                <img src="/assets/avatar1.png" alt="avatar" className="h-48 rounded-full -bottom-1/3 left-3 absolute border-mine-shaft-900 border-8" />
+                <img  src={profile.picture ? `data:image/jpeg;base64,${profile.picture}`:"/assets/avatar1.png"} alt="avatar" className="h-48 rounded-full -bottom-1/3 left-3 absolute border-mine-shaft-900 border-8" />
             </div>
             <div className="mt-16 px-3">
                 <div className="text-3xl font-semibold flex justify-between">

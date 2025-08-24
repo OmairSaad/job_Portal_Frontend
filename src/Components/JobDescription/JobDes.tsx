@@ -16,15 +16,17 @@ const JobDes = ({ edit, job }: JobDesIn) => {
     // Load the des from var but filter it if it consists dangerous script by npm i dompurify
     const data = DOMpurify.sanitize(job.jobDescription);
     const user = useSelector((state: RootState) => state.user);
+    const {successMessage,error} = useSelector((state:RootState)=> state.jobs);
     const dispatch = useDispatch();
     const handleToggleSave = () => {
         dispatch(saveToggleJob({ jobId: job.id, userId: user.id }));
 
     }
 
-    const handleEdit = (id: number) => {
+    const handleDelete = (id: number) => {
         dispatch(deleteJob(id));
     }
+
     return (
         <div className="w-2/3">
             <div className="flex justify-between items-center">
@@ -39,16 +41,16 @@ const JobDes = ({ edit, job }: JobDesIn) => {
                 </div>
                 <div className="flex flex-col items-center gap-2">
                     {
-                        job.applicationStatus == "APPLIED" && !edit && <Button color="green.8" variant="light">Applied</Button>
+                        (job.applicationStatus == "INTERVIEWING" || job.applicationStatus=="APPLIED" || job.applicationStatus=="OFFERED" || job.applicationStatus=="REJECTED")  && !edit && <Button color="green.8" variant="light">Applied</Button>
                     }
                     {
-                        (job.applicationStatus != "APPLIED" || edit) && <Link to={edit ? "/edit-post"+"/"+job.id : "/apply-job/" + job.id}>
+                        (job.applicationStatus==null || edit) && <Link to={edit ? "/edit-post"+"/"+job.id : "/apply-job/" + job.id}>
                             <Button size="sm" variant="light" color="bright-sun.4">{edit ? "Edit" : "Apply"}</Button>
                         </Link>
                     }
 
                     {
-                        edit ? <Button variant="outline" color="red.4" onClick={()=>handleEdit(job.id)}>Delete</Button> : job.saved ? <IconBookmarkFilled onClick={handleToggleSave} className="text-bright-sun-300 hover:cursor-pointer" /> : <IconBookmark onClick={handleToggleSave} className="text-bright-sun-300 hover:cursor-pointer" />
+                        edit ? <Button variant="outline" color="red.4" onClick={()=>handleDelete(job.id ? job.id :0)}>Delete</Button> : job.saved ? <IconBookmarkFilled onClick={handleToggleSave} className="text-bright-sun-300 hover:cursor-pointer" /> : <IconBookmark onClick={handleToggleSave} className="text-bright-sun-300 hover:cursor-pointer" />
                     }
                 </div>
             </div>

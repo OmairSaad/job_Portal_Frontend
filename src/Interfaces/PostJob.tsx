@@ -42,4 +42,7 @@ export interface PostJobIn {
     website: string;
     cover: string;
     resume: string;
+    interviewDate?: string; // Optional, only if interviewing
+    interviewTime?: string; // Optional, only if interviewing
+    jobId: number; // Reference to the job they applied for
 }
