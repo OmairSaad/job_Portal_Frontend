@@ -3,16 +3,21 @@ import CustomSlider from "../FindJobs/CustomeSlider";
 import MultiInput from "../FindJobs/MultiInput";
 import { FindTalent } from "../../Data/JobTalent";
 import {IconUserCircle } from "@tabler/icons-react";
-import { useRef, useState } from "react";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../Store";
-import { updateFilter } from "../../Slices/FilterSlice";
+import { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../Store";
+import { getFilterProfile, updateFilter } from "../../Slices/FilterSlice";
 
 
 const SearchBar = ()=>{
     const [name, setName] = useState('');
     const timeRef = useRef<ReturnType<typeof setTimeout> | null>(null);
     const dispatch = useDispatch<AppDispatch>();
+    const {filterTerm} = useSelector((state:RootState)=>state.filter);
+
+    useEffect(()=>{
+      dispatch(getFilterProfile(filterTerm));
+    },[filterTerm,dispatch])
     const handleOnchange = (e:  React.ChangeEvent<HTMLInputElement>)=>{
          const val = e.target.value;
          setName(val);
@@ -20,7 +25,6 @@ const SearchBar = ()=>{
          clearInterval(timeRef.current);
 
          timeRef.current = setTimeout(() => {
-            if(val.trim()!="")
             dispatch(updateFilter({name:val}))
          }, 1000);
 

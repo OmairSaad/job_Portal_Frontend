@@ -12,6 +12,12 @@ interface itemInterface {
     }
 }
 
+const fieldMap: Record<string, string> = {
+    "job title": "roles",
+    "skill": "skills",
+    "location": "locations",
+};
+
 
 const MultiInput = ({ item }: itemInterface) => {
     const dispatch = useDispatch<AppDispatch>();
@@ -29,6 +35,7 @@ const MultiInput = ({ item }: itemInterface) => {
 
     const exactOptionMatch = data.some((item) => item === search);
 
+    const fieldKey = fieldMap[item.title.toLowerCase()] || item.title.toLowerCase();
     const handleValueSelect = (val: string) => {
         setSearch('');
 
@@ -36,20 +43,19 @@ const MultiInput = ({ item }: itemInterface) => {
             const newValue = [...value, search];
             setData((current) => [...current, search]);
             setValue((current) => [...current, search]);
-            dispatch(updateFilter({ [item.title.toLowerCase()=="job title"? "roles":item.title.toLowerCase()]: newValue })); // ✅ dispatch new array
+            dispatch(updateFilter({[fieldKey]:newValue})); // ✅ dispatch new array
         } else {
             const newValue = value.includes(val) ? value.filter((v) => v !== val) : [...value, val]
             setValue(newValue);
-            setValue(newValue);   
-            dispatch(updateFilter({ [item.title.toLowerCase()=="job title"? "roles":item.title.toLowerCase()+'s']: newValue })); // ✅ dispatch new array
-    
+            dispatch(updateFilter({[fieldKey]:newValue}));   //dispatch new array
+
         }
     };
 
-    const handleValueRemove = (val: string)=> {
-          const newValue = value.filter((v) => v !== val);
-     setValue(newValue);
-     dispatch(updateFilter({ [item.title.toLowerCase()]: newValue })); // ✅ dispatch on remove
+    const handleValueRemove = (val: string) => {
+        const newValue = value.filter((v) => v !== val);
+        setValue(newValue);
+        dispatch(updateFilter({[fieldKey]:newValue})); // ✅ dispatch on remove
 
     }
 

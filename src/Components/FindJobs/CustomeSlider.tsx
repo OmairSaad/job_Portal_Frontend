@@ -33,7 +33,7 @@ const CustomSlider = () => {
                 }}
                 onChangeEnd={(val) => {
                     console.log("Final:", val);
-                    dispatch(updateFilter({ experience: val }));
+                    dispatch(updateFilter({ minimumExperience: val[0], maximumExperience:val[1] }));
                 }}
             />
 

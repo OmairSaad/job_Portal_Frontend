@@ -130,6 +130,7 @@ export const updateApplicationStatus = createAsyncThunk(
 
 export const getAllProfiles = createAsyncThunk(
     "profiles/getAllProfiles", async (_,{rejectWithValue})=>{
+        console.log((".................................................."))
         try{
            const response = await axios.get(`${base_url}profiles`); 
            return response.data;
